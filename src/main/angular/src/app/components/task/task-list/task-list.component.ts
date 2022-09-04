@@ -3,8 +3,9 @@ import {MdbTableDirective, MdbTablePaginationComponent} from "angular-bootstrap-
 import {Location} from "@angular/common";
 import {Router} from "@angular/router";
 import {TaskService} from "@app/_services/task.service";
-import {Product, User} from "../../../../generated/model";
 import {AuthenticationService} from "@app/_services/authentication.service";
+import {Task, User} from "../../../../generated/model";
+
 
 @Component({
   selector: 'app-product-list',
@@ -20,7 +21,7 @@ export class TaskListComponent implements OnInit {
     this.searchItems();
   }
 
-  products: Product[]
+  products: Task[]
   previous: any = [];
   searchText: string = '';
   user: User;
@@ -66,12 +67,12 @@ export class TaskListComponent implements OnInit {
     this.location.back();
   }
 
-  edit(product: Product) {
+  edit(product: Task) {
     console.log("prod ", product)
-    this.router.navigate([`/editProduct/${product.id}`])
+    this.router.navigate([`/editTask/${product.id}`])
   }
 
-  delete(product: Product) {
+  delete(product: Task) {
     this.service.delete(product).subscribe(data => {
       this.getAll()
     })
@@ -81,8 +82,8 @@ export class TaskListComponent implements OnInit {
     this.products = await this.service.getAll().toPromise()
   }
 
-  addProducts() {
-    this.router.navigate(['/addProducts'])
+  addTasks() {
+    this.router.navigate(['/addTasks'])
   }
 
   isAdmin() {

@@ -3,12 +3,12 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationService} from "@app/_services/authentication.service";
 import {Router} from "@angular/router";
 import {Location} from "@angular/common";
-import {Product} from "../../../../generated/model";
 
 import {TaskService} from "@app/_services/task.service";
+import {Task} from "../../../../generated/model";
 
 @Component({
-  selector: 'app-add-product',
+  selector: 'app-add-task',
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.less']
 })
@@ -19,7 +19,7 @@ export class AddTaskComponent implements OnInit {
   loading: boolean
 
   constructor(private formBuilder: FormBuilder, private authService: AuthenticationService,
-              private productService: TaskService, private router: Router, private location: Location
+              private taskService: TaskService, private router: Router, private location: Location
   ) {
   }
 
@@ -37,8 +37,8 @@ export class AddTaskComponent implements OnInit {
     if (this.registerForm.invalid) {
       return
     } else {
-      this.productService.add(this.getProductFromForm()).subscribe(() =>
-        this.router.navigate(['/products']))
+      this.taskService.add(this.getTaskFromForm()).subscribe(() =>
+        this.router.navigate(['/tasks']))
     }
   }
 
@@ -46,8 +46,8 @@ export class AddTaskComponent implements OnInit {
     return this.registerForm.controls
   }
 
-  private getProductFromForm() {
-    let product: Product= new class implements Product {
+  private getTaskFromForm() {
+    let task: Task= new class implements Task {
       carType: string;
       description: string;
       id: number;
@@ -55,11 +55,11 @@ export class AddTaskComponent implements OnInit {
       title: string;
     }
 
-    product.price = this.form.price.value
-    product.title = this.form.title.value
-    product.carType = this.form.carType.value
-    product.description = this.form.description.value
-    return product;
+    task.price = this.form.price.value
+    task.title = this.form.title.value
+    task.carType = this.form.carType.value
+    task.description = this.form.description.value
+    return task;
   }
 
   back() {

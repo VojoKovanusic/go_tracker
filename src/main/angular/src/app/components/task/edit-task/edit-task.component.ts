@@ -5,16 +5,16 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {first} from "rxjs/operators";
 import {TaskService} from "@app/_services/task.service";
-import {Product, User} from "../../../../generated/model";
+import {Task, User} from "../../../../generated/model";
 
 @Component({
-  selector: 'app-edit-product',
+  selector: 'app-edit-task',
   templateUrl: './edit-task.component.html',
   styleUrls: ['./edit-task.component.less']
 })
 export class EditTaskComponent implements OnInit {
   registerForm: FormGroup
-  productId = this.activation.snapshot.params.id
+  taskId = this.activation.snapshot.params.id
   submitted: boolean
   error = ''
   loading: boolean
@@ -35,10 +35,9 @@ export class EditTaskComponent implements OnInit {
       carType: ['', Validators.required]
     })
 
-    this.service.getById(this.productId).subscribe(
-      product => {
-        console.log("this.registerForm.setValue(product);", product)
-         this.registerForm.setValue(product);
+    this.service.getById(this.taskId).subscribe(
+      task => {
+         this.registerForm.setValue(task);
       }
     )
   }
@@ -48,11 +47,11 @@ export class EditTaskComponent implements OnInit {
     if (this.registerForm.invalid) {
       return
     } else {
-      this.service.edit(this.getProductFromForm()).pipe(first())
+      this.service.edit(this.getTaskFromForm()).pipe(first())
         .subscribe(
           data => {
             if (data) {
-              this.router.navigate(['products']);
+              this.router.navigate(['tasks']);
             } else {
               alert("Desila se greška!");
             }
@@ -67,8 +66,8 @@ export class EditTaskComponent implements OnInit {
     return this.registerForm.controls
   }
 
-  private getProductFromForm() {
-    let product: Product= new class implements Product {
+  private getTaskFromForm() {
+    let task: Task= new class implements Task {
       carType: string;
       description: string;
       id: number;
@@ -76,12 +75,12 @@ export class EditTaskComponent implements OnInit {
       title: string;
     }
 
-    product.price = this.form.price.value
-    product.title = this.form.title.value
-    product.carType = this.form.carType.value
-    product.description = this.form.description.value
-    product.id = this.productId
-    return product;
+    task.price = this.form.price.value
+    task.title = this.form.title.value
+    task.carType = this.form.carType.value
+    task.description = this.form.description.value
+    task.id = this.taskId
+    return task;
   }
 
   back() {

@@ -33,7 +33,6 @@ export class UserPageComponent implements OnInit, AfterViewInit {
       this.table.setDataSource(this.users);
       this.users = this.table.getDataSource();
       this.previous = this.table.getDataSource();
-      console.log(this.users)
     });
 
   }
@@ -70,7 +69,6 @@ export class UserPageComponent implements OnInit, AfterViewInit {
   }
 
   delete(user: User) {
-    console.log("delete", user)
     this.service.delete(user).subscribe(data => {
       this.getAll()
     })

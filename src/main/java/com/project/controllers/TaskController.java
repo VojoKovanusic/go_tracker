@@ -11,35 +11,35 @@ import java.util.List;
 @Slf4j
 @RestController
 @CrossOrigin(origins = "*")
-public class ProductController {
+public class TaskController {
     private final TaskService taskService;
 
     @Autowired
-    public ProductController(TaskService taskService) {
+    public TaskController(TaskService taskService) {
         this.taskService = taskService;
     }
 
-    @GetMapping("/products")
-    public List<Task> products() {
+    @GetMapping("/tasks")
+    public List<Task> tasks() {
         return taskService.tasks();
     }
 
-    @GetMapping("/product/{id}")
-    public Task productById(@PathVariable Long id) {
+    @GetMapping("/task/{id}")
+    public Task taskById(@PathVariable Long id) {
         return taskService.get(id);
     }
 
-    @PostMapping("/product")
+    @PostMapping("/task")
     public void register(@RequestBody Task task) {
         taskService.add(task);
     }
 
-    @PutMapping("/product")
+    @PutMapping("/task")
     public Task edit(@RequestBody Task task) {
         return taskService.edit(task);
     }
 
-    @DeleteMapping("/product/{id}")
+    @DeleteMapping("/task/{id}")
     public void delete(@PathVariable long id) {
         taskService.delete(id);
     }
