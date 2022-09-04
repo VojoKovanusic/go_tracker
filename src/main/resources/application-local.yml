@@ -1,0 +1,37 @@
+server:
+  port: 8091
+spring:
+  datasource:
+    platform: postgres
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=tracker
+    username: postgres
+    password: admin
+    initialization-mode: never
+    hikari:
+      connection-timeout: 20000
+      minimum-idle: 5
+      maximum-pool-size: 12
+      idle-timeout: 300000
+      max-lifetime: 1200000
+      auto-commit: true
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+
+  #mail:
+spring.mail.host: smtp.gmail.com
+spring.mail.username: leptiritest@gmail.com
+spring.mail.password: Ortodox19121982
+spring.mail.port: 587
+spring.mail.protocol: smtp
+spring.mail.test-connection: false
+spring.mail.properties.mail.smtp.starttls.enable: true
+
+#metics
+management.endpoint.metrics.enabled: true
+management.endpoint.prometheus.enabled: true
+management.metrics.export.prometheus.enabled: true
+#management.endpoints.web.exposure.include: *

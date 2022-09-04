@@ -1,0 +1,3 @@
+spring:
+  profiles:
+    active: ${SERVICE_PROFILES_ACTIVE:local}

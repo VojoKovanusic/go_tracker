@@ -1,0 +1,44 @@
+
+<div class="navColor">
+
+  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark"  [containerInside]="false">
+
+    <!-- Navbar brand -->
+    <mdb-navbar-brand><a class="navbar-brand" href="#">
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <a class="navbar-brand"   href="#">MAGAZA
+        </a>
+      </ul>
+    </a></mdb-navbar-brand>
+    <!-- Collapsible content -->
+    <links>
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/'">POČETNA</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/users'"*ngIf="isAdmin">RADNICI</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/addUser'"*ngIf="isAdmin">
+            <mdb-icon fas icon="plus"></mdb-icon>
+            RADNIK</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/products'">PROIZVODI</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/addProduct'" *ngIf="isAdmin">
+            <mdb-icon fas icon="plus"></mdb-icon>
+            PROIZVOD</a>
+        </li>
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+
+      </ul>
+    </links>
+    <!-- Collapsible content -->
+
+  </mdb-navbar>
+ <!--/.Navbar-->
+</div>

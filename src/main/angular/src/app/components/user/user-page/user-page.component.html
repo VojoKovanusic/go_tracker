@@ -1,0 +1,61 @@
+<br>
+<div class="alert alert-info">
+  Pregled svih registrovanih radnika
+</div>
+
+<div class="container">
+  <div class="table-responsive">
+
+    <div class="row">
+      <div class="col-md-12 mx-auto">
+        <div class="md-form">
+          <input
+            type="text"
+            [(ngModel)]="searchText"
+            class="form-control"
+            id="search"
+            mdbInput
+          />
+          <label for="search">Pronadji radnika</label>
+        </div>
+      </div>
+    </div>
+    <table mdbTable #tableEl="mdbTable" class="z-depth-1">
+      <thead class="table-info">
+      <tr>
+        <th [mdbTableSort]="users"></th>
+        <th [mdbTableSort]="users" sortBy="firstName">IME <mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="users" sortBy="lastName">PREZIME <mdb-icon fas icon="sort"></mdb-icon></th>
+        <th [mdbTableSort]="users" sortBy="username">MOBILNI <mdb-icon fas icon="sort"></mdb-icon></th>  <th [mdbTableSort]="users" sortBy="role">Uloga <mdb-icon fas icon="sort"></mdb-icon></th>
+           <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users; let i = index">
+        <th *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex"
+            scope="row" >{{i+1}}</th>
+        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{user.firstName}}</td>
+        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{user.lastName}}</td>
+        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{user.username}}</td>
+        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{user.role}}</td>
+         <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">
+          <mdb-icon *ngIf="isAdmin()" fas icon="user-edit" class="cyan-text pr-2" size="lg" (click)="edit(user)"
+                    title="Edituj radnika"></mdb-icon>
+          <mdb-icon *ngIf="isAdmin()" fas icon="user-minus" class="red-text pr-2" size="lg" (click)="delete(user)"
+                    title="Obrisi radnika"></mdb-icon>
+        </td>
+      </tr>
+      </tbody>
+      <tfoot class="grey lighten-5 w-100">
+      <tr>
+        <td colspan="8">
+          <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="users"></mdb-table-pagination>
+        </td>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+  <div class="back">
+  </div>
+</div>
+<app-footer></app-footer>

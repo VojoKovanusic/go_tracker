@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/angular-role-based-authorization-example",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
