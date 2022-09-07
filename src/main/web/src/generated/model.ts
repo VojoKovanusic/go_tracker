@@ -17,7 +17,6 @@ export interface Product extends Serializable {
     title: string;
     description: string;
     carType: string;
-    price: number;
 }
 
 export interface Role {

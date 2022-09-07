@@ -14,7 +14,7 @@ import {EditTaskComponent} from "@app/components/task/edit-task/edit-task.compon
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: TaskListComponent,
     canActivate: [AuthGuard],
     data: {roles: [Role.ADMIN_ROLE, Role.USER_ROLE]}
   },
@@ -37,19 +37,19 @@ const routes: Routes = [
     data: {roles: [Role.ADMIN_ROLE]}
   },
   {
-    path: 'products',
+    path: 'tasks',
     component: TaskListComponent,
     canActivate: [AuthGuard],
     data: {roles: [Role.ADMIN_ROLE, Role.USER_ROLE]}
   },
   {
-    path: 'addProduct',
+    path: 'addTask',
     component: AddTaskComponent,
     canActivate: [AuthGuard],
     data: {roles: [Role.ADMIN_ROLE]}
   },
   {
-    path: 'editProduct/:id',
+    path: 'editTask/:id',
     component: EditTaskComponent,
     canActivate: [AuthGuard],
     data: {roles: [Role.ADMIN_ROLE]}

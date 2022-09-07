@@ -20,6 +20,5 @@ public class Task implements Serializable {
     private Long id;
     private String title;
     private String description;
-    private String carType;
-    private Double price;
+    private String username;
 }

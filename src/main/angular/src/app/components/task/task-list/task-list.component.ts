@@ -36,8 +36,7 @@ export class TaskListComponent implements OnInit {
       this.table.setDataSource(this.products);
       this.products = this.table.getDataSource();
       this.previous = this.table.getDataSource();
-      console.log(this.products)
-    });
+     });
   }
 
   async getAllAll() {

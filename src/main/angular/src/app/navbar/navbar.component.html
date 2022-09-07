@@ -6,32 +6,30 @@
     <!-- Navbar brand -->
     <mdb-navbar-brand><a class="navbar-brand" href="#">
       <ul class="navbar-nav ml-auto nav-flex-icons">
-        <a class="navbar-brand"   href="#">MAGAZA
+        <a class="navbar-brand"   href="#">GOPACK
         </a>
       </ul>
     </a></mdb-navbar-brand>
     <!-- Collapsible content -->
     <links>
-      <!-- Links -->
-      <ul class="navbar-nav mr-auto">
+
+      <ul class="navbar-nav mr-auto">  <!-- Links
         <li class="nav-item">
           <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/'">POČETNA</a>
-        </li>
+        </li>-->
         <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/users'"*ngIf="isAdmin">RADNICI</a>
+          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/users'"*ngIf="isAdmin"><i class="fas fa-users"></i></a>
         </li>
         <li class="nav-item">
           <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/addUser'"*ngIf="isAdmin">
-            <mdb-icon fas icon="plus"></mdb-icon>
-            RADNIK</a>
+            <i class="fas fa-user-plus"></i> </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/products'">PROIZVODI</a>
+          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/tasks'"><i class="fas fa-cogs"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/addProduct'" *ngIf="isAdmin">
-            <mdb-icon fas icon="plus"></mdb-icon>
-            PROIZVOD</a>
+          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/addTask'" *ngIf="isAdmin">
+            <mdb-icon fas icon="plus"></mdb-icon><i class="fas fa-cog"></i></a>
         </li>
         <a class="nav-item nav-link" (click)="logout()">Logout</a>
 

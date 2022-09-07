@@ -3,10 +3,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationService} from "@app/_services/authentication.service";
 import {Router} from "@angular/router";
 import {Location} from "@angular/common";
-
 import {TaskService} from "@app/_services/task.service";
 import {Task} from "../../../../generated/model";
-
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
@@ -27,8 +25,7 @@ export class AddTaskComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
-      price: ['', Validators.required],
-      carType: ['', Validators.required]
+      username: ['', Validators.required]
     })
   }
 
@@ -48,16 +45,14 @@ export class AddTaskComponent implements OnInit {
 
   private getTaskFromForm() {
     let task: Task= new class implements Task {
-      carType: string;
+      username: string;
       description: string;
       id: number;
-      price: number;
-      title: string;
+       title: string;
     }
 
-    task.price = this.form.price.value
     task.title = this.form.title.value
-    task.carType = this.form.carType.value
+    task.username = this.form.username.value
     task.description = this.form.description.value
     return task;
   }

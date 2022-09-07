@@ -1,13 +1,13 @@
 <div class="col-md-6 offset-md-3 mt-5">
   <div class="alert alert-info">
-    Dodajte novi proizvod
+    Dodajte novi zadatak
   </div>
   <div class="card">
-    <h4 class="card-header">sva polja su obavezna</h4>
+    <h4 class="card-header">Sva polja su obavezna</h4>
     <div class="card-body">
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <label for="title">Ime proizvoda</label>
+          <label for="title">Naziv zadatka</label>
           <input type="text" formControlName="title" class="form-control"
                  [ngClass]="{ 'is-invalid': submitted && form.title.errors }"/>
           <div *ngIf="submitted && form.title.errors" class="invalid-feedback">
@@ -16,27 +16,21 @@
         </div>
         <div class="form-group">
           <label for="description">Opis</label>
-          <input type="text" formControlName="description" class="form-control"
-                 [ngClass]="{ 'is-invalid': submitted && form.description.errors }"/>
+
+          <textarea type="text" formControlName="description" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && form.description.errors }"></textarea>
           <div *ngIf="submitted && form.description.errors" class="invalid-feedback">
             <div *ngIf="form.description.errors.required">First name is required</div>
           </div>
         </div>
+
         <div class="form-group">
-          <label for="carType">Tip auta</label>
-          <input type="text" formControlName="carType" class="form-control"
-                 [ngClass]="{ 'is-invalid': submitted && form.carType.errors }"/>
-          <div *ngIf="submitted && form.carType.errors" class="invalid-feedback">
-            <div *ngIf="form.carType.errors.required">Last name is required</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="price">Cjena</label>
-          <input type="number" formControlName="price" class="form-control"
-                 [ngClass]="{ 'is-invalid': submitted && form.price.errors }"/>
-          <div *ngIf="submitted && form.price.errors" class="invalid-feedback">
-            <div *ngIf="form.price.errors.required">Password is required</div>
-          </div>
+          <select class="form-select form-control" aria-label="Default select example" formControlName="username">
+            <option selected>Open this select menu</option>
+            <option value="Marko">Marko</option>
+            <option value="Janko">Hanko</option>
+            <option value="Miloš">Miloš</option>
+          </select>
         </div>
 
         <button [disabled]="loading" class="btn btn-primary">
@@ -54,6 +48,5 @@
     </div>
   </div>
 </div>
-
 
 <app-footer></app-footer>

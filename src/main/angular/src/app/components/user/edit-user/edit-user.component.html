@@ -8,7 +8,7 @@
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="username">Broj mobilnog</label>   format:06X-XXX-XXX
-          <input type="text" formControlName="username" class="form-control"
+          <input  type="number" formControlName="username" class="form-control"
                  [ngClass]="{ 'is-invalid': submitted && form.username.errors }"/>
           <div *ngIf="submitted && form.username.errors" class="invalid-feedback">
             <div *ngIf="form.username.errors.required">kontakt br je obavezan</div>

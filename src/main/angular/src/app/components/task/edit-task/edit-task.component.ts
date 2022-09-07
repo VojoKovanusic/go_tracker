@@ -31,8 +31,7 @@ export class EditTaskComponent implements OnInit {
       id: [],
       title: ['', Validators.required],
       description: ['', Validators.required],
-      price: ['', Validators.required],
-      carType: ['', Validators.required]
+       username: ['', Validators.required]
     })
 
     this.service.getById(this.taskId).subscribe(
@@ -68,16 +67,14 @@ export class EditTaskComponent implements OnInit {
 
   private getTaskFromForm() {
     let task: Task= new class implements Task {
-      carType: string;
+      username: string;
       description: string;
       id: number;
-      price: number;
-      title: string;
+       title: string;
     }
 
-    task.price = this.form.price.value
     task.title = this.form.title.value
-    task.carType = this.form.carType.value
+    task.username = this.form.username.value
     task.description = this.form.description.value
     task.id = this.taskId
     return task;

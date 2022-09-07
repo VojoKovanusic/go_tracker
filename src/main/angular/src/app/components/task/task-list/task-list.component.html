@@ -1,7 +1,8 @@
 <br>
+<!--
 <div class="alert alert-info">
-  Pregled svih proizvoda na stanju
-</div>
+  Pregled svih zadataka
+</div>-->
 
 <div class="container">
   <div class="table-responsive">
@@ -16,26 +17,22 @@
             id="search"
             mdbInput
           />
-          <label for="search">Search</label>
+          <label for="search">Pretraži</label>
         </div>
       </div>
     </div>
     <table mdbTable #tableEl="mdbTable" class="z-depth-1">
       <thead class="table-info">
       <tr>
-        <th [mdbTableSort]="products" sortBy="id">ID
+        <th [mdbTableSort]="products" sortBy="title">Naslov<br>
           <mdb-icon fas icon="sort"></mdb-icon>
         </th>
-        <th [mdbTableSort]="products" sortBy="title">Ime
+
+        <th [mdbTableSort]="products" sortBy="username">Osoba<br>
           <mdb-icon fas icon="sort"></mdb-icon>
         </th>
-        <th [mdbTableSort]="products" sortBy="carType">Tip
-          <mdb-icon fas icon="sort"></mdb-icon>
-        </th>
-        <th [mdbTableSort]="products" sortBy="description">Opis
-          <mdb-icon fas icon="sort"></mdb-icon>
-        </th>
-        <th [mdbTableSort]="products" sortBy="price">Cjena
+
+        <th [mdbTableSort]="products" sortBy="price">Status<br>
           <mdb-icon fas icon="sort"></mdb-icon>
         </th>
         <th>Akcije</th>
@@ -43,12 +40,13 @@
       </thead>
       <tbody>
       <tr *ngFor="let product of products; let i = index">
-        <th *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex"
-            scope="row">{{i + 1}}</th>
+       <!-- <p class="text-break">{{product.title}}</p>-->
         <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{product.title}}</td>
-        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{product.carType}}</td>
-        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{product.description}}</td>
-        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{product.price}}</td>
+         <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{product.username}}</td>
+        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">
+          <div class="spinner-grow text-success" role="status">
+          <span class="visually-hidden"> </span>
+          </div>  <!-- sivi krug <span class="dot"></span></td>-->
         <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">
           <mdb-icon *ngIf="isAdmin()" fas icon="edit" class="cyan-text pr-2" size="lg" (click)="edit(product)"
                     title="Edituj proizvod"></mdb-icon>
@@ -69,3 +67,4 @@
 
 </div>
 <app-footer></app-footer>
+
