@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {TaskService} from "@app/_services/task.service";
 import {Task} from "../../../../generated/model";
+
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
@@ -15,6 +16,7 @@ export class AddTaskComponent implements OnInit {
   submitted: boolean
   error = ''
   loading: boolean
+  users = ['Marko', 'Janko', 'Miloš'];
 
   constructor(private formBuilder: FormBuilder, private authService: AuthenticationService,
               private taskService: TaskService, private router: Router, private location: Location
@@ -44,11 +46,11 @@ export class AddTaskComponent implements OnInit {
   }
 
   private getTaskFromForm() {
-    let task: Task= new class implements Task {
+    let task: Task = new class implements Task {
       username: string;
       description: string;
       id: number;
-       title: string;
+      title: string;
     }
 
     task.title = this.form.title.value
@@ -61,3 +63,15 @@ export class AddTaskComponent implements OnInit {
     this.location.back();
   }
 }
+/*{
+  "name": "src",
+  "version": "1.0.0",
+  "lockfileVersion": 2,
+  "requires": true,
+  "packages": {
+  "": {
+    "version": "1.0.0"
+  }
+}
+}
+package-lock.json*/

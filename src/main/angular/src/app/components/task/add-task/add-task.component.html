@@ -26,10 +26,13 @@
 
         <div class="form-group">
           <select class="form-select form-control" aria-label="Default select example" formControlName="username">
+
             <option selected>Open this select menu</option>
             <option value="Marko">Marko</option>
             <option value="Janko">Hanko</option>
             <option value="Miloš">Miloš</option>
+
+
           </select>
         </div>
 
@@ -47,6 +50,24 @@
       </form>
     </div>
   </div>
+</div>
+<div>
+  <h1>TinyMCE 5 Angular Demo</h1>
+  <editor
+    apiKey="Your-api-key-belongs-here"
+    [init]="{
+     height: 500,
+     menubar: false,
+     plugins: [
+       'advlist autolink lists link image charmap print preview anchor',
+       'searchreplace visualblocks code fullscreen',
+       'insertdatetime media table paste code help wordcount'
+     ],
+     toolbar:
+       'undo redo | formatselect | bold italic backcolor'
+   }"
+  >
+  </editor>
 </div>
 
 <app-footer></app-footer>
