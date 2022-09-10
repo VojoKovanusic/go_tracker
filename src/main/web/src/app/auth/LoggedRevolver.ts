@@ -1,9 +1,9 @@
 import {Injectable} from "@angular/core";
-import {AuthenticationService} from "./authentication.service";
-import {Router} from "@angular/router";
-import {Role} from "@app/_models/role";
-import {User} from "../../generated/model";
 
+import {Router} from "@angular/router";
+import {Role} from "./role";
+import {AuthenticationService} from "./AuthenticationService";
+import {User} from "../models/models";
 @Injectable({providedIn: 'root'})
 // @ts-ignore
 export class LoggedRevolver {
@@ -13,21 +13,11 @@ export class LoggedRevolver {
     this.authenticationService.user.subscribe(x => this.user = x);
   }
 
-  getLoggedUser() {
-    return this.user;
-  }
 
   logout() {
     this.authenticationService.logout()
   }
 
-  getRole() {
-    return this.user.role;
-  }
-
-  isClient() {
-    return this.user.role === Role.CLIENT_ROLE
-  }
 
   isAdmin() {
     return this.user.role === Role.ADMIN_ROLE

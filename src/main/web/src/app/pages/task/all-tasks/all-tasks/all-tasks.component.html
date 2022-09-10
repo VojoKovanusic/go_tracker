@@ -1,0 +1,70 @@
+<br>
+<!--
+<div class="alert alert-info">
+  Pregled svih zadataka
+</div>-->
+
+<div class="container">
+  <div class="table-responsive">
+
+    <div class="row">
+      <div class="col-md-12 mx-auto">
+        <div class="md-form">
+          <input
+            type="text"
+            [(ngModel)]="searchText"
+            class="form-control"
+            id="search"
+            mdbInput
+          />
+          <label for="search">Pretraži</label>
+        </div>
+      </div>
+    </div>
+    <table mdbTable #tableEl="mdbTable" class="z-depth-1">
+      <thead class="table-info">
+      <tr>
+        <th [mdbTableSort]="products" sortBy="title">Naslov<br>
+          <mdb-icon fas icon="sort"></mdb-icon>
+        </th>
+
+        <th [mdbTableSort]="products" sortBy="username">Osoba<br>
+          <mdb-icon fas icon="sort"></mdb-icon>
+        </th>
+
+        <th [mdbTableSort]="products" sortBy="price">Status<br>
+          <mdb-icon fas icon="sort"></mdb-icon>
+        </th>
+        <th>Akcije</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let product of products; let i = index">
+        <!-- <p class="text-break">{{product.title}}</p>-->
+        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{product.title}}</td>
+        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{product.username}}</td>
+        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">
+          <div class="spinner-grow text-success" role="status">
+            <span class="visually-hidden"> </span>
+          </div>  <!-- sivi krug <span class="dot"></span></td>-->
+        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">
+          <mdb-icon *ngIf="isAdmin()" fas icon="edit" class="cyan-text pr-2" size="lg" (click)="edit(product)"
+                    title="Edituj proizvod"></mdb-icon>
+          <mdb-icon *ngIf="isAdmin()" fas icon="edit" class="red-text pr-2" size="lg" (click)="delete(product)"
+                    title="Obrisi proizvod"></mdb-icon>
+        </td>
+      </tr>
+      </tbody>
+      <tfoot class="grey lighten-5 w-100">
+      <tr>
+        <td colspan="6">
+          <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="products"></mdb-table-pagination>
+        </td>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+
+</div>
+<app-footer></app-footer>
+

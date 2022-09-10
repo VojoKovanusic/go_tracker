@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {User} from "../../generated/model";
-import {Role} from "@app/_models/role";
-import {AuthenticationService} from "@app/_services/authentication.service";
 import {Router} from "@angular/router";
-import {LoggedRevolver} from "@app/_services/logedd-reolver.service";
+import {AuthenticationService} from "../../auth/AuthenticationService";
+import {User} from "../../models/models";
+import {LoggedRevolver} from "../../auth/LoggedRevolver";
+import {Role} from "../../auth/role";
 
 @Component({
   selector: 'app-navbar',
@@ -21,16 +21,8 @@ export class NavbarComponent {
     return this.user && this.user.role === Role.ADMIN_ROLE;
   }
 
-
   logout() {
     this.authenticationService.logout();
   }
 
-  addClient() {
-    this.route.navigate(['/addClient'])
-  }
-
-  isClient() {
-    return this.logedResolver.isClient()
-  }
 }

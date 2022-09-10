@@ -1,0 +1,56 @@
+
+<div class="navColor">
+
+  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark"  [containerInside]="false">
+
+    <!-- Navbar brand -->
+    <mdb-navbar-brand><a class="navbar-brand" href="#">
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/tasks'">Tasks<i class="fa fa-fw fa-home"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/users'"*ngIf="isAdmin">users<i class="fas fa-users"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/addUser'"*ngIf="isAdmin">add_User
+            <i class="fas fa-user-plus"></i> </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/addTask'" *ngIf="isAdmin"addTask>add_Task
+            <i class="far fa-plus-square"></i> </a>
+        </li>
+        <!--    <a class="nav-item nav-link" (click)="logout()">Logout</a>-->
+
+      </ul>
+    </a></mdb-navbar-brand>
+    <!-- Collapsible content -->
+    <!--    <links>
+
+          <ul class="navbar-nav mr-auto">  &lt;!&ndash; Links
+            <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/'">POČETNA</a>
+            </li>&ndash;&gt;
+            <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/users'"*ngIf="isAdmin"><i class="fas fa-users"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/addUser'"*ngIf="isAdmin">
+                <i class="fas fa-user-plus"></i> </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/tasks'"><i class="fas fa-cogs"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/addTask'" *ngIf="isAdmin">
+                <mdb-icon fas icon="plus"></mdb-icon><i class="fas fa-cog"></i></a>
+            </li>
+            <a class="nav-item nav-link" (click)="logout()">Logout</a>
+
+          </ul>
+        </links>-->
+    <!-- Collapsible content -->
+
+  </mdb-navbar>
+  <!--/.Navbar-->
+</div>

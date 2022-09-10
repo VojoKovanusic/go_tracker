@@ -33,7 +33,4 @@ export class AuthChecker {
     return this.user.role === Role.ADMIN_ROLE
   }
 
-  isScanner() {
-    return this.user.role === Role.SCANNER_ROLE;
-  }
 }

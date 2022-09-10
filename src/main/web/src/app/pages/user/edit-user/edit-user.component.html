@@ -1,0 +1,66 @@
+<div class="col-md-6 offset-md-3 mt-5">
+  <div class="alert alert-info">
+    Editujte radnika
+  </div>
+  <div class="card">
+    <h4 class="card-header">sva polja su obavezna</h4>
+    <div class="card-body">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="username">Broj mobilnog</label>   format:06X-XXX-XXX
+          <input  type="number" formControlName="username" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && form.username.errors }"/>
+          <div *ngIf="submitted && form.username.errors" class="invalid-feedback">
+            <div *ngIf="form.username.errors.required">kontakt br je obavezan</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="firstName">Ime</label>
+          <input type="firstName" formControlName="firstName" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && form.firstName.errors }"/>
+          <div *ngIf="submitted && form.firstName.errors" class="invalid-feedback">
+            <div *ngIf="form.firstName.errors.required">Ime je obavezno</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Prezime</label>
+          <input type="lastName" formControlName="lastName" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && form.lastName.errors }"/>
+          <div *ngIf="submitted && form.lastName.errors" class="invalid-feedback">
+            <div *ngIf="form.lastName.errors.required">Prezime je obavezno</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Šifra</label>
+          <input type="password" formControlName="password" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && form.password.errors }"/>
+          <div *ngIf="submitted && form.password.errors" class="invalid-feedback">
+            <div *ngIf="form.password.errors.required">Password is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="radio" value="USER_ROLE" formControlName="role"> radnik
+          <input type="radio" value="ADMIN_ROLE" formControlName="role"> administrator
+        </div>
+
+        <button class="btn btn-primary">
+          Edituj
+        </button>
+
+        <div class="back">
+          <button class="btn btn-primary" (click)="back()">
+            Nazadd
+          </button>
+          <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
+
+
+
+
