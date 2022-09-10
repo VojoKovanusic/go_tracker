@@ -18,10 +18,12 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {HoursPipe} from "@app/_helpers/pipe/HoursPipe";
 import {EditUserComponent} from './components/user/edit-user/edit-user.component';
 import {EditTaskComponent} from './components/task/edit-task/edit-task.component';
-import {TaskListComponent} from "@app/components/task/task-list/task-list.component";;
-import { FooterComponent } from './footer/footer.component'
+import {TaskListComponent} from "@app/components/task/task-list/task-list.component";
+import {FooterComponent} from './footer/footer.component'
 import {AddTaskComponent} from "@app/components/task/add-task/add-task.component";
-import { EditorModule } from "@tinymce/tinymce-angular";
+
+;
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -32,7 +34,6 @@ import { EditorModule } from "@tinymce/tinymce-angular";
     FormsModule,
     MatSliderModule,
     BrowserAnimationsModule,
-    EditorModule,
     MDBBootstrapModule.forRoot()],
   declarations: [
     AppComponent,

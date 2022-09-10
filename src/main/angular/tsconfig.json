@@ -16,5 +16,15 @@
     {
       "path": "./e2e/tsconfig.json"
     }
-]
+],
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    // ...
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    // ...
+  }
 }
