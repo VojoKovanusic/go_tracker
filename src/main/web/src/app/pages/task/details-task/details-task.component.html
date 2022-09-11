@@ -12,11 +12,11 @@
       <hr>
 
       <div class="form-group">
-        <strong>Opis: <br></strong>{{task.description}}
+        <strong>Opis: <br></strong> <div [innerHTML]="task.description"></div>
       </div>
       <hr>
       <div class="form-group">
-        <strong>Radnik: </strong>{{task.username}}
+        <strong>Radnik: </strong> {{task.username}}
       </div>
       <hr>
       <div class="back">
