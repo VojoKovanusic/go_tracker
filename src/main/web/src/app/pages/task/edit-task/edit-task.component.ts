@@ -86,7 +86,4 @@ export class EditTaskComponent implements OnInit {
 
   }
 
-  isAdmin() {
-
-  }
 }

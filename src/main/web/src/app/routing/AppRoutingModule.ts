@@ -10,6 +10,7 @@ import {EditUserComponent} from "../pages/user/edit-user/edit-user.component";
 import {EditTaskComponent} from "../pages/task/edit-task/edit-task.component";
 import {LoginComponent} from "../pages/login/login.component";
 import {StatisticsComponent} from "../pages/stats/statistics/statistics.component";
+import {DetailsTaskComponent} from "../pages/task/details-task/details-task.component";
 
 
 const routes: Routes = [
@@ -52,6 +53,11 @@ const routes: Routes = [
   {
     path: 'editTask/:id',
     component: EditTaskComponent,
+    canActivate: [AuthGuard],
+    data: {roles: [Role.ADMIN_ROLE]}
+  },  {
+    path: 'detailsTask/:id',
+    component: DetailsTaskComponent,
     canActivate: [AuthGuard],
     data: {roles: [Role.ADMIN_ROLE]}
   },

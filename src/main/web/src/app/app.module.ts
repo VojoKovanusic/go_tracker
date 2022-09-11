@@ -18,8 +18,10 @@ import {LoginComponent} from "./pages/login/login.component";
 import {UserPageComponent} from "./pages/user/user-page/user-page.component";
 import {EditUserComponent} from "./pages/user/edit-user/edit-user.component";
 import {AddUserComponent} from "./pages/user/add-user/add-user.component";
-import {AllTasksComponent } from './pages/task/all-tasks/all-tasks/all-tasks.component';
+import {AllTasksComponent} from './pages/task/all-tasks/all-tasks/all-tasks.component';
 import {EditTaskComponent} from "./pages/task/edit-task/edit-task.component";
+import {MatIconModule} from "@angular/material/icon";
+import {DetailsTaskComponent} from './pages/task/details-task/details-task.component';
 
 let toolbar = [
 
@@ -58,7 +60,8 @@ let toolbar = [
     AllTasksComponent,
     AddTaskComponent,
     EditTaskComponent,
-    NavbarComponent
+    NavbarComponent,
+    DetailsTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,8 @@ let toolbar = [
         syntax: false,
         toolbar: toolbar
       }
-    })
+    }),
+    MatIconModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}],

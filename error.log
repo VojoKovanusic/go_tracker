@@ -540,3 +540,5 @@ io.jsonwebtoken.ExpiredJwtException: JWT expired at 2022-09-10T03:50:57Z. Curren
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:830)
 
+2022-09-11 02:10:54.291 ERROR 4032 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000478: Unsuccessful: alter table users_roles drop constraint FKj6m8fwv7oqv74fcehir1a9ffy
+2022-09-11 02:10:54.293 ERROR 4032 --- [SpringContextShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000478: Unsuccessful: alter table users_roles drop constraint FK2o0jvgh89lemvvo17cbqvdxaa

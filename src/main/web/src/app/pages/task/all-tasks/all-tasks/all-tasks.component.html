@@ -11,16 +11,17 @@
       <div class="col-md-12 mx-auto">
         <div class="md-form">
           <input
+            placeholder="Pronadji"
             type="text"
             [(ngModel)]="searchText"
             class="form-control"
             id="search"
             mdbInput
           />
-          <label for="search">Pretraži</label>
         </div>
       </div>
     </div>
+    <br>
     <table mdbTable #tableEl="mdbTable" class="z-depth-1">
       <thead class="table-info">
       <tr>
@@ -49,9 +50,9 @@
           </div>  <!-- sivi krug <span class="dot"></span></td>-->
         <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">
           <mdb-icon *ngIf="isAdmin()" fas icon="edit" class="cyan-text pr-2" size="lg" (click)="edit(product)"
-                    title="Edituj proizvod"></mdb-icon>
+                    title="Edituj proizvod"></mdb-icon>Edituj
           <mdb-icon *ngIf="isAdmin()" fas icon="edit" class="red-text pr-2" size="lg" (click)="delete(product)"
-                    title="Obrisi proizvod"></mdb-icon>
+                    title="Obrisi proizvod"></mdb-icon>Obrisi
         </td>
       </tr>
       </tbody>

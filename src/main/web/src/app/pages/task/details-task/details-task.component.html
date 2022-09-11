@@ -1,0 +1,34 @@
+<div class="col-md-6 offset-md-3 mt-5">
+  <div class="alert alert-info">
+    Editujte proizvod
+  </div>
+  <div class="card">
+    <h4 class="card-header">Sva polja su obavezna</h4>
+    <div class="card-body">
+
+      <div class="form-group">
+        <strong>Naslov: </strong> {{task.title}}
+      </div>
+      <hr>
+
+      <div class="form-group">
+        <strong>Opis: <br></strong>{{task.description}}
+      </div>
+      <hr>
+      <div class="form-group">
+        <strong>Radnik: </strong>{{task.username}}
+      </div>
+      <hr>
+      <div class="back">
+        <button class="btn btn-primary" (click)="back()">
+          Nazad
+        </button>
+
+
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+
+</div>
