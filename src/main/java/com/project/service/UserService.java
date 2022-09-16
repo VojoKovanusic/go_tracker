@@ -1,9 +1,13 @@
 package com.project.service;
 
+import com.project.mapper.UserMapper;
 import com.project.model.Role;
 import com.project.model.User;
+import com.project.model.response.UserResponse;
 import com.project.repository.RoleRepository;
 import com.project.repository.UserRepository;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,16 +20,12 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class UserService {
     private final UserRepository repository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
-    @Autowired
-    public UserService(UserRepository repository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
-        this.repository = repository;
-        this.roleRepository = roleRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+    private final UserMapper userMapper;
 
     public User getUserById(long id) {
         return repository.findById(id).orElse(null);
@@ -41,6 +41,10 @@ public class UserService {
         return users.stream()
                 .filter(User::isEnabled)
                 .collect(Collectors.toList());
+    }
+
+    public List<UserResponse> getAllUserResponse() {
+        return userMapper.toResponseList(repository.findAll());
     }
 
     //@CacheEvict(value = "users", allEntries = true)

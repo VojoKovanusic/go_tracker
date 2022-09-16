@@ -5,3 +5,8 @@
   border-radius: 50%;
   display: inline-block;
 }
+
+.paginationRight{
+  position: absolute;
+  right: 10px;
+}

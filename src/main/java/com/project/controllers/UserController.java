@@ -1,18 +1,21 @@
 package com.project.controllers;
 
 import com.project.model.User;
+import com.project.model.response.UserResponse;
 import com.project.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @Slf4j
 @RestController
 @CrossOrigin(origins = "*")
 public class UserController {
     private final UserService userService;
-@Autowired
+
+    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -25,6 +28,11 @@ public class UserController {
     @GetMapping("/users")
     public List<User> users() {
         return userService.getAll();
+    }
+
+    @GetMapping("/users-response")
+    public List<UserResponse> usersResponse() {
+        return userService.getAllUserResponse();
     }
 
     @GetMapping("/users/{username}")
@@ -41,7 +49,7 @@ public class UserController {
 
     @PutMapping("/user")
     public User edit(@RequestBody User user) {
-      log.info("edit user {}", user);
+        log.info("edit user {}", user);
         return userService.edit(user);
     }
 

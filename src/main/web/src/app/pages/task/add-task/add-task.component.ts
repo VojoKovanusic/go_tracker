@@ -4,7 +4,9 @@ import {Location} from "@angular/common";
 import {TaskService} from "../../../services/TaskService";
 import {AuthenticationService} from "../../../auth/AuthenticationService";
 import {Component, OnInit} from "@angular/core";
-import {Task} from "../../..//models/models";
+import {Task, User, UserResponse} from "../../..//models/models";
+import {UserService} from "../../../services/UserService";
+
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
@@ -16,19 +18,24 @@ export class AddTaskComponent implements OnInit {
   submitted: boolean
   error = ''
   loading: boolean
-  users = ['Marko', 'Janko', 'Miloš'];
+  users: UserResponse[]
 
   constructor(private formBuilder: FormBuilder, private authService: AuthenticationService,
-              private taskService: TaskService, private router: Router, private location: Location
+              private taskService: TaskService, private router: Router, private userService: UserService, private location: Location
   ) {
   }
 
   ngOnInit(): void {
+    this.getAllAll().then(u=>{
+      console.log(this.users=u)
+    })
     this.registerForm = this.formBuilder.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
       username: ['', Validators.required]
     })
+
+    console.log("USERS: ",this.users)
   }
 
   onSubmit() {
@@ -63,6 +70,13 @@ export class AddTaskComponent implements OnInit {
 
   back() {
     this.location.back();
+  }
+
+  async getAllAll() {
+    return  await this.userService.getAllUserResponse().toPromise()
+  }
+  getUsers(){
+    return this.users
   }
 }
 
