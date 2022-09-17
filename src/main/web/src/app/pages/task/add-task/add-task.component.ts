@@ -4,7 +4,7 @@ import {Location} from "@angular/common";
 import {TaskService} from "../../../services/TaskService";
 import {AuthenticationService} from "../../../auth/AuthenticationService";
 import {Component, OnInit} from "@angular/core";
-import {Task, User, UserResponse} from "../../..//models/models";
+import {Status, Task, User, UserResponse} from "../../..//models/models";
 import {UserService} from "../../../services/UserService";
 
 @Component({
@@ -26,16 +26,14 @@ export class AddTaskComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllAll().then(u=>{
-      console.log(this.users=u)
+    this.getAllAll().then(u => {
+      console.log(this.users = u)
     })
     this.registerForm = this.formBuilder.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
       username: ['', Validators.required]
     })
-
-    console.log("USERS: ",this.users)
   }
 
   onSubmit() {
@@ -59,12 +57,12 @@ export class AddTaskComponent implements OnInit {
       description: string;
       id: number;
       title: string;
+      status: Status
     }
 
     task.title = this.form.title.value
     task.username = this.form.username.value
     task.description = this.form.description.value
-    console.log("task", task.description)
     return task;
   }
 
@@ -73,9 +71,10 @@ export class AddTaskComponent implements OnInit {
   }
 
   async getAllAll() {
-    return  await this.userService.getAllUserResponse().toPromise()
+    return await this.userService.getAllUserResponse().toPromise()
   }
-  getUsers(){
+
+  getUsers() {
     return this.users
   }
 }

@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {first} from "rxjs/operators";
-import {User} from "../../../models/models";
+import {Status, User} from "../../../models/models";
 import {AuthenticationService} from "../../../auth/AuthenticationService";
 import {TaskService} from "../../../services/TaskService";
 import {Task} from "../../../models/models";
@@ -72,6 +72,7 @@ export class EditTaskComponent implements OnInit {
       description: string;
       id: number;
        title: string;
+       status:Status
     }
 
     task.title = this.form.title.value

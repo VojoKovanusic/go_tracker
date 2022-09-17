@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 2.21.588 on 2022-09-14 22:04:29.
+// Generated using typescript-generator version 2.21.588 on 2022-09-17 06:55:13.
 
 export class AuthenticationRequest {
     password: string;
@@ -22,6 +22,7 @@ export class Task implements Serializable {
     title: string;
     description: string;
     username: string;
+    status: Status;
 }
 
 export class User implements Serializable {
@@ -44,4 +45,10 @@ export class UserResponse {
 }
 
 export interface Serializable {
+}
+
+export const enum Status {
+    IN_PROGRESS = "IN_PROGRESS",
+    FINISHED = "FINISHED",
+    CREATED = "CREATED",
 }

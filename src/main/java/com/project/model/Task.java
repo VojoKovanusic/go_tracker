@@ -7,7 +7,7 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Table(name = "product")
+@Table(name = "task")
 @Entity
 @ToString
 @Setter
@@ -21,4 +21,5 @@ public class Task implements Serializable {
     private String title;
     private String description;
     private String username;
+    private Status status;
 }
