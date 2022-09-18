@@ -1,12 +1,6 @@
 <br>
-<!--
-<div class="alert alert-info">
-  Pregled svih zadataka
-</div>-->
-
 <div class="container">
   <div class="table-responsive">
-
     <div class="row">
       <div class="col-md-12 mx-auto">
         <div class="md-form">
@@ -25,15 +19,15 @@
     <table mdbTable #tableEl="mdbTable" class="z-depth-1">
       <thead class="table-info">
       <tr>
-        <th [mdbTableSort]="products" sortBy="title">Naslov<br>
+        <th class="tableHeadInButton" [mdbTableSort]="products" sortBy="title">Naslov<br>
           <mdb-icon fas icon="sort"></mdb-icon>
         </th>
 
-        <th [mdbTableSort]="products" sortBy="username">Osoba<br>
+        <th class="tableHeadInButton" [mdbTableSort]="products" sortBy="username">Osoba<br>
           <mdb-icon fas icon="sort"></mdb-icon>
         </th>
 
-        <th [mdbTableSort]="products" sortBy="price">Status<br>
+        <th class="tableHeadInButton" [mdbTableSort]="products" sortBy="status">Status<br>
           <mdb-icon fas icon="sort"></mdb-icon>
         </th>
         <th>Akcije</th>
@@ -42,17 +36,24 @@
       <tbody>
       <tr *ngFor="let product of products; let i = index">
         <!-- <p class="text-break">{{product.title}}</p>-->
-        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{product.title}}</td>
+        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex"><strong>{{product.title}}</strong></td>
         <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{product.username}}</td>
         <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">
-          <div class="spinner-grow text-success" role="status">
-            <span class="visually-hidden"> </span>
-          </div>  <!-- sivi krug <span class="dot"></span></td>-->
+          <mat-icon *ngIf="isInPlayState(product.status)" (click)="switchInProgress(product)">play_circle_outline
+          </mat-icon>
+          <div *ngIf="isInProgress(product.status)" (click)="switchOnFinished(product)"
+               class="spinner-grow text-success inProgress"></div>
+          <mat-icon *ngIf="isFinished(product.status)" class="finishedIcon">check_circle_outline</mat-icon>
+
+          <!-- sivi krug <span class="dot"></span></td>-->
         <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">
-          <mdb-icon *ngIf="isAdmin()" fas icon="edit" class="cyan-text pr-2" size="lg" (click)="edit(product)"
-                    title="Edituj proizvod"></mdb-icon>Edituj
-          <mdb-icon *ngIf="isAdmin()" fas icon="edit" class="red-text pr-2" size="lg" (click)="delete(product)"
-                    title="Obrisi proizvod"></mdb-icon>Obrisi
+          <mat-icon *ngIf="isAdmin()" (click)="edit(product)" class="edit tileMe"
+                    title="Edituj proizvod">edit
+          </mat-icon>
+          <mat-icon *ngIf="isAdmin()" (click)="delete(product)" class="delete tileMe"
+                    title="Obrisi proizvod">delete
+          </mat-icon>
+          <mat-icon (click)="details(product)" *ngIf="!loading" class="go tileMe">arrow_forward</mat-icon>
         </td>
       </tr>
       </tbody>

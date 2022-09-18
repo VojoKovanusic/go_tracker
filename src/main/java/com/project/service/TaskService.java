@@ -1,5 +1,6 @@
 package com.project.service;
 
+import com.project.model.Status;
 import com.project.model.Task;
 import com.project.repository.TaskRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,7 @@ public class TaskService {
 
     public void add(Task task) {
         log.info("Added task: {}", task);
+        task.setStatus(Status.CREATED);
         this.taskRepository.save(task);
     }
 

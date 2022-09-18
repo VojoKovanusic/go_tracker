@@ -7,8 +7,8 @@
     <div class="card-body">
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <label for="username">Broj mobilnog</label>   format:06X-XXX-XXX
-          <input  type="number" formControlName="username" class="form-control"
+          <label for="username">Broj mobilnog</label> format:06X-XXX-XXX
+          <input type="number" formControlName="username" class="form-control"
                  [ngClass]="{ 'is-invalid': submitted && form.username.errors }"/>
           <div *ngIf="submitted && form.username.errors" class="invalid-feedback">
             <div *ngIf="form.username.errors.required">kontakt br je obavezan</div>
@@ -41,18 +41,12 @@
 
         <div class="form-group">
           <input type="radio" value="USER_ROLE" formControlName="role"> radnik
-          <input type="radio" value="ADMIN_ROLE" formControlName="role"> administrator
+          <input type="radio" value="ADMIN_ROLE" formControlName="role"> menager
         </div>
 
-        <button class="btn btn-primary">
-          Edituj
-        </button>
-
+        <mat-icon (click)="onSubmit()" class="saveBtn">check_circle</mat-icon>
         <div class="back">
-          <button class="btn btn-primary" (click)="back()">
-            Nazadd
-          </button>
-          <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+          <mat-icon (click)="back()" title="Nazad" class="back">arrow_back</mat-icon>
         </div>
       </form>
     </div>

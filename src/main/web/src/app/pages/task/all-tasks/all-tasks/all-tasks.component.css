@@ -6,7 +6,41 @@
   display: inline-block;
 }
 
-.paginationRight{
+.paginationRight {
   position: absolute;
   right: 10px;
+}
+
+.go {
+  color: #17a2b8;
+  cursor: pointer;
+
+}
+
+.delete {
+  color: red;
+  cursor: pointer;
+}
+
+.edit {
+  color: #17a2b8;
+  cursor: pointer;
+}
+
+.mat-icon {
+  font-size: 25px;
+  height: auto !important;
+}
+
+.inProgress{
+  height: 20px;
+  width: 20px;
+}
+
+.finishedIcon{
+  color: #008a00;
+}
+
+.tableHeadInButton{
+  cursor: pointer;
 }

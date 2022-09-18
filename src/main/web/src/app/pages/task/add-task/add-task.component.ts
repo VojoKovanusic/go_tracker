@@ -74,8 +74,5 @@ export class AddTaskComponent implements OnInit {
     return await this.userService.getAllUserResponse().toPromise()
   }
 
-  getUsers() {
-    return this.users
-  }
 }
 

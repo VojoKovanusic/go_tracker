@@ -5,6 +5,8 @@ import com.project.model.User;
 import com.project.model.AuthenticationResponse;
 import com.project.securityService.AuthenticateService;
 import com.project.service.UserService;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,18 +15,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Set;
-
+@AllArgsConstructor
 @RestController
 @CrossOrigin(origins = "*")
+@Slf4j
 public class AuthController {
-	@Autowired
-	UserService userService;
-	@Autowired
-	private AuthenticateService authenticateService;
+
+	private final UserService userService;
+	private final  AuthenticateService authenticateService;
 	
 	@PostMapping("/register")
 	public User register(@RequestBody User user) {
-		System.out.println("user = " + user);
+		log.info("User registered {} {} {}", user.getUsername(), user.getFirstName(), user.getLastName());
 		return userService.register(user);
 	}
 

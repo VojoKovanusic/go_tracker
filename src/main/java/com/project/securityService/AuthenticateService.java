@@ -1,7 +1,7 @@
 package com.project.securityService;
 
+import com.project.Util.JwtUtil;
 import com.project.model.User;
-import com.project.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;

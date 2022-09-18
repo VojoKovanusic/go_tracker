@@ -1,25 +1,30 @@
-
 <div class="navColor">
 
-  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark"  [containerInside]="false">
+  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark" [containerInside]="false">
 
     <!-- Navbar brand -->
     <mdb-navbar-brand><a class="navbar-brand" href="#">
       <ul class="navbar-nav ml-auto nav-flex-icons">
         <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/tasks'">Tasks<i class="fa fa-fw fa-home"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/users'"*ngIf="isAdmin">users<i class="fas fa-users"></i></a>
+          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/tasks'">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/users'" *ngIf="isAdmin">
+            <mat-icon>people</mat-icon></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/addUser'"*ngIf="isAdmin">add_User
-            <i class="fas fa-user-plus"></i> </a>
+          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/addUser'" *ngIf="isAdmin">
+            <mat-icon>person_add</mat-icon>
+          </a>
 
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/addTask'" *ngIf="isAdmin"addTask>add_Task
-            <i class="far fa-plus-square"></i> </a>
+          <a class="nav-link waves-light" mdbWavesEffect [routerLink]="'/addTask'" *ngIf="isAdmin">
+            <mat-icon>note_add</mat-icon> </a>
         </li>
         <!--    <a class="nav-item nav-link" (click)="logout()">Logout</a>-->
 

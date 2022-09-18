@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {User} from "../../../models/models";
 import {AuthenticationService} from "../../../auth/AuthenticationService";
 import {UserService} from "../../../services/UserService";
+import {Role} from "../../../auth/role";
 
 @Component({
   selector: 'app-user-page',
@@ -85,5 +86,16 @@ export class UserPageComponent implements OnInit, AfterViewInit {
   isAdmin() {
     console.log("this.usr.role ==", this.usr.role)
     return this.usr.role == "ADMIN_ROLE"
+  }
+
+  apropriateUserRole(role: string) {
+    if(role==Role.ADMIN_ROLE){
+      return "MENAGER"
+    }
+
+    if(role==Role.USER_ROLE){
+      return "RADNIK"
+    }
+
   }
 }

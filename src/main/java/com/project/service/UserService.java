@@ -49,10 +49,9 @@ public class UserService {
 
     //@CacheEvict(value = "users", allEntries = true)
     public User register(User user) {
-        System.out.println("user reg = " + user.getUsername());
         prepareUserForDatabase(user);
         User savedUser = repository.save(user);
-        System.out.println("User {} is saved in DB" + savedUser);
+        log.info("User {} is saved in DB", savedUser);
         return savedUser;
     }
 

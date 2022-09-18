@@ -24,16 +24,16 @@
       <thead class="table-info">
       <tr>
         <th [mdbTableSort]="users"></th>
-        <th [mdbTableSort]="users" sortBy="firstName">IME
+        <th [mdbTableSort]="users" class="tableHeadInButton" sortBy="firstName" >IME
           <mdb-icon fas icon="sort"></mdb-icon>
         </th>
-        <th [mdbTableSort]="users" sortBy="lastName">PREZIME
+        <th [mdbTableSort]="users" class="tableHeadInButton" sortBy="lastName">PREZIME
           <mdb-icon fas icon="sort"></mdb-icon>
         </th>
-        <th [mdbTableSort]="users" sortBy="username">MOBILNI
+        <th [mdbTableSort]="users" class="tableHeadInButton" sortBy="username">MOBILNI
           <mdb-icon fas icon="sort"></mdb-icon>
         </th>
-        <th [mdbTableSort]="users" sortBy="role">Uloga
+        <th [mdbTableSort]="users" class="tableHeadInButton" sortBy="role">Uloga
           <mdb-icon fas icon="sort"></mdb-icon>
         </th>
         <th></th>
@@ -46,12 +46,15 @@
         <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{user.firstName}}</td>
         <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{user.lastName}}</td>
         <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{user.username}}</td>
-        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{user.role}}</td>
+        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{apropriateUserRole(user.role)}}</td>
         <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">
-          <mdb-icon *ngIf="isAdmin()" fas icon="user-edit" class="cyan-text pr-2" size="lg" (click)="edit(user)"
-                    title="Edituj radnika"></mdb-icon>
-          <mdb-icon *ngIf="isAdmin()" fas icon="user-minus" class="red-text pr-2" size="lg" (click)="delete(user)"
-                    title="Obrisi radnika"></mdb-icon>
+
+
+          <mat-icon *ngIf="isAdmin()" (click)="edit(user)" class="edit"
+                    title="Edituj radnika">edit</mat-icon>
+
+          <mat-icon *ngIf="isAdmin()"  (click)="delete(user)" class="delete"
+                    title="Obrisi radnika">delete</mat-icon>
         </td>
       </tr>
       </tbody>

@@ -22,6 +22,7 @@ import {AllTasksComponent} from './pages/task/all-tasks/all-tasks/all-tasks.comp
 import {EditTaskComponent} from "./pages/task/edit-task/edit-task.component";
 import {MatIconModule} from "@angular/material/icon";
 import {DetailsTaskComponent} from './pages/task/details-task/details-task.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 let toolbar = [
 
@@ -61,7 +62,8 @@ let toolbar = [
     AddTaskComponent,
     EditTaskComponent,
     NavbarComponent,
-    DetailsTaskComponent
+    DetailsTaskComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

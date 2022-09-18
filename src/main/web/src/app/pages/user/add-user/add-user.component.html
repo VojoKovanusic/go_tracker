@@ -41,20 +41,16 @@
 
         <div class="form-group">
           <input type="radio" value="USER_ROLE" formControlName="role"> radnik
-          <input type="radio" value="ADMIN_ROLE" formControlName="role"> adminstrator
+          <input type="radio" value="ADMIN_ROLE" formControlName="role"> menager
         </div>
 
-        <button [disabled]="loading" class="btn btn-primary">
-          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-          Add
-        </button>
 
+        <mat-icon (click)="onSubmit()" class="saveBtn">check_circle</mat-icon>
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
         <div class="back">
-          <button class="btn btn-primary" (click)="back()">
-            Back
-          </button>
-          <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+          <mat-icon (click)="back()" title="Nazad" class="back">arrow_back</mat-icon>
         </div>
+
       </form>
     </div>
   </div>

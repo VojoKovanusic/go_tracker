@@ -1,8 +1,8 @@
 package com.project.filter;
 
+import com.project.Util.JwtUtil;
 import com.project.securityService.UserDetailsServiceImpl;
-import com.project.util.JwtUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,7 +35,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         response.setHeader("Access-Control-Allow-Headers", "*");
         response.setHeader("Access-Control-Allow-Credentials", String.valueOf(true));
         response.setHeader("Access-Control-Max-Age", "180");
-        response.setHeader("Authorisation", request.getAuthType()); //null
+        response.setHeader("Authorization", request.getAuthType()); //null
 
 
         String authHeader = httpServletRequest.getHeader("Authorization");

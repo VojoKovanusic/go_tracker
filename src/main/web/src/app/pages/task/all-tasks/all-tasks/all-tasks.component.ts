@@ -2,10 +2,9 @@ import {ChangeDetectorRef, Component, HostListener, OnInit, ViewChild} from '@an
 import {MdbTableDirective, MdbTablePaginationComponent} from "angular-bootstrap-md";
 import {Location} from "@angular/common";
 import {Router} from "@angular/router";
-import {User, Task} from "../../../../models/models";
+import {Status, Task, User} from "../../../../models/models";
 import {TaskService} from "../../../../services/TaskService";
 import {AuthenticationService} from "../../../../auth/AuthenticationService";
-
 
 
 @Component({
@@ -22,7 +21,8 @@ export class AllTasksComponent implements OnInit {
     this.searchItems();
   }
 
-  products: Task[]
+  loading: boolean;
+  products: Task[];
   previous: any = [];
   searchText: string = '';
   user: User;
@@ -68,7 +68,6 @@ export class AllTasksComponent implements OnInit {
   }
 
   edit(product: Task) {
-    console.log("prod ", product)
     this.router.navigate([`/editTask/${product.id}`])
   }
 
@@ -88,5 +87,42 @@ export class AllTasksComponent implements OnInit {
 
   isAdmin() {
     return this.user.role === "ADMIN_ROLE"
+  }
+
+  details(product: Task) {
+    this.router.navigate([`/detailsTask/${product.id}`])
+  }
+
+  isInPlayState(status: Status) {
+    return status == Status.CREATED
+  }
+
+  isInProgress(status: Status) {
+    return status == Status.IN_PROGRESS
+  }
+
+  isFinished(status: Status) {
+    return status == Status.FINISHED
+
+  }
+
+  switchInProgress(task: Task) {
+    this.loading = true;
+    task.status = Status.IN_PROGRESS;
+    this.service.edit(task).subscribe(() => {
+        this.loading = false;
+        console.log("task updated:" ,this.loading)
+      }
+    )
+  }
+
+  switchOnFinished(task: Task) {
+    this.loading = true;
+    task.status = Status.FINISHED;
+    this.service.edit(task).subscribe(() => {
+      this.loading = false;
+      console.log("task updated:" ,this.loading)
+
+    })
   }
 }

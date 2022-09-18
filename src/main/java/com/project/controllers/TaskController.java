@@ -30,7 +30,7 @@ public class TaskController {
     }
 
     @PostMapping("/task")
-    public void register(@RequestBody Task task) {
+    public void save(@RequestBody Task task) {
         taskService.add(task);
     }
 
