@@ -11,6 +11,7 @@ import {EditTaskComponent} from "../pages/task/edit-task/edit-task.component";
 import {LoginComponent} from "../pages/login/login.component";
 import {StatisticsComponent} from "../pages/stats/statistics/statistics.component";
 import {DetailsTaskComponent} from "../pages/task/details-task/details-task.component";
+import {RegisterComponent} from "../pages/register/register.component";
 
 
 const routes: Routes = [
@@ -55,7 +56,7 @@ const routes: Routes = [
     component: EditTaskComponent,
     canActivate: [AuthGuard],
     data: {roles: [Role.ADMIN_ROLE]}
-  },  {
+  }, {
     path: 'detailsTask/:id',
     component: DetailsTaskComponent,
     canActivate: [AuthGuard],
@@ -70,6 +71,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   /* otherwise redirect to home*/
   {path: '**', redirectTo: ''}

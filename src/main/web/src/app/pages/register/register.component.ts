@@ -15,10 +15,10 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup
   submitted: boolean
-  error = ''
+  errorMsg = null;
   loading: boolean
-
-  // loggedUser = this.authService.userValue.username
+  user: User;
+  msisdn: number;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthenticationService,
               private userService: UserService, private router: Router, private location: Location
@@ -26,8 +26,12 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authService.user.subscribe(user => this.user = user)
+    if (this.user != null) {
+      this.router.navigate(['/tasks'])
+    }
     this.registerForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      msisdn: ['', Validators.required],
     })
   }
 
@@ -36,10 +40,10 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.invalid) {
       return
     } else {
-      let user = this.getUserFromForm();
-      console.log("User", user)
-      this.userService.registerUser(user).subscribe(() =>
-        this.router.navigate(['']))
+      this.userService.sendSms(this.getMsisdnFromForm())
+        .subscribe(() =>
+            this.router.navigate(['/login']),
+          error => this.errorMsg = error)
     }
   }
 
@@ -47,24 +51,20 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.controls
   }
 
-  private getUserFromForm() {
+  private getMsisdnFromForm() {
+    return this.form.msisdn.value;
 
-    let user: User = ({
-      username: this.form.username.value,
-      role: null,
-      password: null,
-      firstName: null,
-      lastName: null,
-      token: null,
-      id: null,
-      admin: null,
-      enabled: null
-    })
-    return user
   }
 
   back() {
     this.location.back();
 
+  }
+
+  isErrorOccurred() {
+    if (this.errorMsg != null) {
+      return true;
+    }
+    return false;
   }
 }

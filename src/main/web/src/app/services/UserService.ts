@@ -35,8 +35,11 @@ export class UserService {
     return this.http.delete<User>(`${environment.apiUrl}/user/` + user.id)
   }
 
+  sendSms(msisdn: string): Observable<User> {
+    return this.http.post<User>(`${environment.apiUrl}/send-pin`, msisdn)
+  }
+
   edit(user: User) {
     return this.http.put<User>(`${environment.apiUrl}/user/`, user)
-
   }
 }

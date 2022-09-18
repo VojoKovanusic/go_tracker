@@ -43,6 +43,7 @@ public class SecurityConfiger extends WebSecurityConfigurerAdapter {
 				.csrf().disable().authorizeRequests()
 				.antMatchers("/login").permitAll()
 				.antMatchers("/register").permitAll()
+				.antMatchers("/send-pin").permitAll()
 				.antMatchers("/admin*").hasAnyAuthority("ADMIN_ROLE")
 				.antMatchers("/users*").hasAnyAuthority("ADMIN_ROLE","USER_ROLE")
 				.antMatchers("/clients").hasAnyAuthority("ADMIN_ROLE","USER_ROLE", "CLIENT_ROLE")
