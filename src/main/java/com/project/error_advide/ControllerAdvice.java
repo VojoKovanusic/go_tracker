@@ -21,6 +21,13 @@ public class ControllerAdvice {
         log.debug(exception.getMessage(), exception);
         return create(exception.getMessage());
     }
+
+    @ExceptionHandler(MsisdnNotValidEception.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorMessageResource handle(final MsisdnNotValidEception exception) {
+        log.debug(exception.getMessage(), exception);
+        return create(exception.getMessage());
+    }
     private ErrorMessageResource create(final String message) {
         return ErrorMessageResource.builder().message(message).build();
     }

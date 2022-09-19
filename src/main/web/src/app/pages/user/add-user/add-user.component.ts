@@ -14,9 +14,9 @@ import {UserService} from "../../../services/UserService";
 export class AddUserComponent implements OnInit {
   registerForm: FormGroup
   submitted: boolean
-  error = ''
+  errorMsg: string = null;
   loading: boolean
- // loggedUser = this.authService.userValue.username
+
 
   constructor(private formBuilder: FormBuilder, private authService: AuthenticationService,
               private userService: UserService, private router: Router, private location: Location
@@ -39,9 +39,9 @@ export class AddUserComponent implements OnInit {
       return
     } else {
       let user = this.getUserFromForm();
-      console.log("User", user)
-      this.userService.registerUser(user).subscribe(() =>
-        this.router.navigate(['/users']))
+      this.userService.addUser(user).subscribe(() =>
+          this.router.navigate(['/users']),
+        error => this.errorMsg = error)
     }
   }
 
@@ -53,14 +53,14 @@ export class AddUserComponent implements OnInit {
 
     let user: User = ({
       username: this.form.username.value,
-      role:this.form.role.value,
+      role: this.form.role.value,
       password: this.form.password.value,
       firstName: this.form.firstName.value,
-      lastName:this.form.lastName.value,
-      token:null,
-      id:null,
+      lastName: this.form.lastName.value,
+      token: null,
+      id: null,
       admin: null,
-      enabled:null
+      enabled: null
     })
     return user
   }
@@ -68,6 +68,9 @@ export class AddUserComponent implements OnInit {
   back() {
     this.location.back();
 
+  }
+  isErrorOccurred() {
+    return this.errorMsg != null;
   }
 }
 

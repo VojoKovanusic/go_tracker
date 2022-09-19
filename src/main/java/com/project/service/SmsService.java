@@ -1,87 +1,81 @@
 package com.project.service;
 
+import com.project.Util.SmsValidator;
+import com.project.constants.ErrorMsg;
+import com.project.error_advide.MsisdnNotValidEception;
 import com.project.error_advide.UserNotFoundException;
 import com.project.model.User;
 import com.project.repository.UserRepository;
+import com.vonage.client.VonageClient;
+import com.vonage.client.sms.MessageStatus;
+import com.vonage.client.sms.SmsSubmissionResponse;
+import com.vonage.client.sms.messages.TextMessage;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.InputMismatchException;
 import java.util.Random;
 
 @Service
 @Slf4j
 public class SmsService {
-    @Autowired
+    private static final String API_KEY = "bf0f58c3";
+    private static final String API_SECRET = "o1Sul32vsrxid23l";
+    private final VonageClient smsApiClient;
+
     private UserRepository repository;
-    private static final String BASE_URL = "https://9r8gd3.api.infobip.com";
-    private static final String API_KEY = "App beb01731cfef06e9c97e2933b7ba6d01-72b3c777-db46-4418-8d33-5f8ddc4383e7";
-    private static final String MEDIA_TYPE = "application/json";
+    private static final String SENDER = "Go Pack Info SMS";
+    private final Random random;
 
-    private static final String SENDER = "InfoSMS";
-    private static final String RECIPIENT = "38766860053";
-    private final OkHttpClient client;
 
-    public SmsService() {
-        client = new OkHttpClient().newBuilder()
-                .build();
+    @Autowired
+    public SmsService(UserRepository repository) {
+        this.repository = repository;
+        random = new Random();
+        smsApiClient = VonageClient.builder().apiKey(API_KEY).apiSecret(API_SECRET).build();
     }
-
-    private final Random random = new Random();
-
 
     public void send(String msisdn) throws UserNotFoundException, IOException {
-        User user = repository.findByUsername(msisdn);
+        if (!SmsValidator.isValid(msisdn)) {
+            log.info("Radnik nije unjeo validan broj: {}", msisdn);
+            throw new MsisdnNotValidEception(ErrorMsg.MSISDN_NOT_VALID);
+        }
+
+        final User user = repository.findByUsername(msisdn);
         if (user == null) {
             log.info("Broj {} se ne nalazi u bazi podataka", msisdn);
-            throw new UserNotFoundException("Vaš broj se ne nalazi u bazi podataka, kontaktirajte vaseg nadredjenog!");
+            throw new UserNotFoundException(ErrorMsg.USER_NOT_FOUND);
         }
 
-        String dialCodeBiH = "387";
-        String RECIPIENT = dialCodeBiH + msisdn;
-        String generatedPinCode = String.valueOf(random.nextInt((8999) + 1000)); // TODO MALOPRE POSLAO PIN SA TRI CIFRE
-        String MESSAGE_TEXT = "PIN kod je:" + generatedPinCode;
+        String fullMsisdn = "387" + msisdn;
 
-        String bodyJson = String.format("{\"messages\":[{\"from\":\"%s\",\"destinations\":[{\"to\":\"%s\"}],\"text\":\"%s\"}]}",
-                SENDER,
-                RECIPIENT,
-                MESSAGE_TEXT
-        );
-
-        MediaType mediaType = MediaType.parse(MEDIA_TYPE);
-        RequestBody body = RequestBody.create(bodyJson, mediaType);
-
-        Request request = prepareHttpRequest(body);
-        if (!msisdn.equals("12345")) {
-            Response response = client.newCall(request).execute();
-            log.info("HTTP status code: {}", response.code());
-            log.info("Response body: {}", response.body().string());
+        String pin = generatedPinCode();
+        if (!msisdn.equals("066123123")) {
+            sendFreeSmsVonage(fullMsisdn, pin);
         }
-        if (msisdn.equals("12345")) {
-            generatedPinCode = "55555";
+        if (msisdn.equals("066123123")) {
+            pin = "55555";
         }
-        user.setPassword(generatedPinCode);
+        user.setPassword(pin);
         repository.save(user);
         log.info("user: {} {} {}, with pin code: {} saved in DB.",
-                user.getUsername(), user.getFirstName(), user.getLastName(), generatedPinCode);
+                user.getUsername(), user.getFirstName(), user.getLastName(), pin);
     }
 
-    private boolean isValidFormat(String msisdn) {
-
-        return msisdn.length() == 8;
-
+    private String generatedPinCode() {
+        return String.valueOf(random.nextInt((8999) + 1000));
     }
 
-    private Request prepareHttpRequest(RequestBody body) {
-        return new Request.Builder()
-                .url(String.format("%s/sms/2/text/advanced", BASE_URL))
-                .method("POST", body)
-                .addHeader("Authorization", API_KEY)
-                .addHeader("Content-Type", MEDIA_TYPE)
-                .addHeader("Accept", MEDIA_TYPE)
-                .build();
+    public void sendFreeSmsVonage(String destinationMsisdn, String pin) {
+        final String messageBody = "Vas pin kod: " + pin + "\n";
+        final TextMessage message = new TextMessage(SENDER, destinationMsisdn, messageBody);
+        final SmsSubmissionResponse response = smsApiClient.getSmsClient().submitMessage(message);
+
+        if (response.getMessages().get(0).getStatus() == MessageStatus.OK) {
+            log.info("SMS Message sent successfully on msisdn:{}", destinationMsisdn);
+        } else {
+            log.error("Message failed with error:{} ", response.getMessages().get(0).getErrorText());
+        }
     }
 }

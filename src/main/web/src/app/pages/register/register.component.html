@@ -6,7 +6,7 @@
     <div class="card-body">
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <label for="msisdn">Broj mobilnog telefina</label>
+          <label for="msisdn">Broj mobilnog telefona</label>
           <input  type="number" formControlName="msisdn" class="form-control"
                   [ngClass]="{ 'is-invalid': submitted && form.msisdn.errors }"/>
           <div *ngIf="submitted && form.msisdn.errors" class="invalid-feedback">

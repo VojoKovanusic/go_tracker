@@ -62,9 +62,7 @@ export class RegisterComponent implements OnInit {
   }
 
   isErrorOccurred() {
-    if (this.errorMsg != null) {
-      return true;
-    }
-    return false;
+    return this.errorMsg != null;
+
   }
 }

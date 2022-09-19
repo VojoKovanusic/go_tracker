@@ -1,5 +1,8 @@
 package com.project.controllers;
 
+import com.project.Util.SmsValidator;
+import com.project.constants.ErrorMsg;
+import com.project.error_advide.MsisdnNotValidEception;
 import com.project.error_advide.UserNotFoundException;
 import com.project.model.Role;
 import com.project.model.User;
@@ -28,8 +31,12 @@ public class AuthController {
     private final SmsService sendSms;
     private final AuthenticateService authenticateService;
 
-    @PostMapping("/register")
+    @PostMapping("/add-user")
     public User register(@RequestBody User user) {
+        if (!SmsValidator.isValid(user.getUsername())) {
+            log.info("Radnik nije unjeo validan broj: {}", user.getUsername());
+            throw new MsisdnNotValidEception(ErrorMsg.MSISDN_NOT_VALID);
+        }
         log.info("User registered {} {} {}", user.getUsername(), user.getFirstName(), user.getLastName());
         return userService.register(user);
     }

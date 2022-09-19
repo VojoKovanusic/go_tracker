@@ -1,14 +1,14 @@
 <div class="col-md-6 offset-md-3 mt-5">
   <div class="alert alert-info">
     Dodajte novog radnika
-   </div>
+  </div>
   <div class="card">
     <h4 class="card-header">sva polja su obavezna</h4>
     <div class="card-body">
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="username">Broj mobilnog</label>
-          <input  type="number" formControlName="username" class="form-control"
+          <input type="number" formControlName="username" class="form-control"
                  [ngClass]="{ 'is-invalid': submitted && form.username.errors }"/>
           <div *ngIf="submitted && form.username.errors" class="invalid-feedback">
             <div *ngIf="form.username.errors.required">Username is required</div>
@@ -44,7 +44,9 @@
           <input type="radio" value="ADMIN_ROLE" formControlName="role"> menager
         </div>
 
-
+    <div *ngIf="isErrorOccurred()" class="errorColor">
+      <h4>{{errorMsg}}</h4>
+    </div>
         <mat-icon (click)="onSubmit()" class="saveBtn">check_circle</mat-icon>
         <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
         <div class="back">
@@ -55,7 +57,6 @@
     </div>
   </div>
 </div>
-
 
 
 <app-footer></app-footer>

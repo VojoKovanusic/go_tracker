@@ -1,5 +1,7 @@
 package com.project.controllers;
 
+import com.project.Util.SmsValidator;
+import com.project.error_advide.MsisdnNotValidEception;
 import com.project.model.User;
 import com.project.model.response.UserResponse;
 import com.project.service.UserService;
@@ -43,7 +45,11 @@ public class UserController {
 
     @PostMapping("/user")
     public User register(@RequestBody User user) {
-        log.info("register user {} ", user);
+        if (SmsValidator.isValid(user.getUsername())) {
+            log.info("Radnik nije unjeo validan broj: {}", user.getUsername());
+            throw new MsisdnNotValidEception("Niste unjeli validan broj telefona." +
+                    "\nUnesite u formatu: 066123123 ili 0641231234");
+        }
         return userService.register(user);
     }
 

@@ -27,8 +27,8 @@ export class UserService {
     return this.http.post<User>(`${environment.apiUrl}/login`, body)
   }
 
-  registerUser(user: User): Observable<User> {
-    return this.http.post<User>(`${environment.apiUrl}/register`, user)
+  addUser(user: User): Observable<User> {
+    return this.http.post<User>(`${environment.apiUrl}/add-user`, user)
   }
 
   delete(user: User): Observable<User> {
