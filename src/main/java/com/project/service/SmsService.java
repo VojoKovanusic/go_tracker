@@ -2,8 +2,8 @@ package com.project.service;
 
 import com.project.Util.SmsValidator;
 import com.project.constants.ErrorMsg;
-import com.project.error_advide.MsisdnNotValidEception;
-import com.project.error_advide.UserNotFoundException;
+import com.project.error_advice.MsisdnNotValidEception;
+import com.project.error_advice.UserNotFoundException;
 import com.project.model.User;
 import com.project.repository.UserRepository;
 import com.vonage.client.VonageClient;

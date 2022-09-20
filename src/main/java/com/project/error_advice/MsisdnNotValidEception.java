@@ -1,4 +1,4 @@
-package com.project.error_advide;
+package com.project.error_advice;
 
 public class MsisdnNotValidEception extends RuntimeException {
     public MsisdnNotValidEception(String msg) {

@@ -1,4 +1,4 @@
-package com.project.error_advide;
+package com.project.error_advice;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

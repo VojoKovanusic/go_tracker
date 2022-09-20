@@ -1,7 +1,7 @@
 package com.project.controllers;
 
 import com.project.Util.SmsValidator;
-import com.project.error_advide.MsisdnNotValidEception;
+import com.project.error_advice.MsisdnNotValidEception;
 import com.project.model.User;
 import com.project.model.response.UserResponse;
 import com.project.service.UserService;
