@@ -1,12 +1,12 @@
 <div class="col-md-6 offset-md-3 mt-5">
   <div class="alert alert-info">
-   Registrujte se
+  Nakon što unesete vaš broj mobilnog, dobićete sms pin kod.
   </div>
   <div class="card">
     <div class="card-body">
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <label for="msisdn">Broj mobilnog telefona</label>
+          <label for="msisdn">Broj mobilnog telefona:</label>
           <input  type="number" formControlName="msisdn" class="form-control"
                   [ngClass]="{ 'is-invalid': submitted && form.msisdn.errors }"/>
           <div *ngIf="submitted && form.msisdn.errors" class="invalid-feedback">

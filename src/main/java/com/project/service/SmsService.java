@@ -52,7 +52,7 @@ public class SmsService {
 
         String pin = generatedPinCode();
         if (!msisdn.equals("066123123")) {
-            sendFreeSmsVonage(fullMsisdn, pin);
+           // sendFreeSmsVonage(fullMsisdn, pin);
         }
         if (msisdn.equals("066123123")) {
             pin = "55555";

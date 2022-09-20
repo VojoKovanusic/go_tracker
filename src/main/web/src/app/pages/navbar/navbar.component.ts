@@ -21,8 +21,15 @@ export class NavbarComponent {
     return this.user && this.user.role === Role.ADMIN_ROLE;
   }
 
+
+
+
   logout() {
+
     this.authenticationService.logout();
   }
 
+  isUserLogIn() {
+    return this.user != null;
+  }
 }

@@ -37,9 +37,9 @@ public class Main {
 
 				User user = new User();
 					user.setAdmin(true);
-					user.setFirstName("snjeza");
-					user.setLastName("kovanusic");
-					user.setUsername("s");
+					user.setFirstName("Snjeza");
+					user.setLastName("Kovanusic");
+					user.setUsername("065123123");
 					user.setPassword("s");
 					user.setEnabled(true);
 					user.getRoles().add(role);
@@ -47,6 +47,16 @@ public class Main {
 					roleRepository.save(role2);
 					roleRepository.save(role4);
 					userRepository.save(user);
+					User user2 = new User();
+					user2.setAdmin(true);
+					user2.setFirstName("Vojo");
+					user2.setLastName("Kovanusic");
+					user2.setUsername("66860053");
+					user2.setPassword("s");
+					user2.setEnabled(true);
+					user2.getRoles().add(role);
+					userRepository.save(user2);
+
 					System.out.println("Inicializacija---***********");
 				};
 	}
