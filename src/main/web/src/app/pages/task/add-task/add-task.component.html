@@ -26,18 +26,18 @@
           <label for="username">Radnik</label>
           <select class="form-select form-control" aria-label="Default select example" formControlName="username"
                   id="username">
-            <option *ngFor="let user of users; let i = index" [value]="users[i].firstName">
-              {{users[i].firstName}} {{users[i].lastName}}
+            <option *ngFor="let user of users" [ngValue]="user.username">
+              {{user.firstName}} {{user.lastName}}
             </option>
           </select>
         </div>
 
         <mat-icon (click)="onSubmit()" class="saveBtn">check_circle</mat-icon>
 
-          <div class="back">
-            <mat-icon (click)="back()" title="Nazad" class="back">arrow_back</mat-icon>
-          </div>
-          <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+        <div class="back">
+          <mat-icon (click)="back()" title="Nazad" class="back">arrow_back</mat-icon>
+        </div>
+        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
 
       </form>
     </div>

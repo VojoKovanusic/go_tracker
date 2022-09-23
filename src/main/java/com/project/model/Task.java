@@ -21,6 +21,6 @@ public class Task implements Serializable {
     private String title;
     private String description;
     private String username;
-    private String msisdn;
+    private String firstAndLastName;
     private Status status;
 }

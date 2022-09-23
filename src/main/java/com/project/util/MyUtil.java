@@ -19,7 +19,6 @@ public class MyUtil {
     public static String getUsernameCurrentlyLoggedInUser() {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
-
         return userDetails.getUsername();
     }
 }

@@ -23,11 +23,10 @@ public class TaskService {
 
     public List<Task> tasks() {
         if(MyUtil.isUser()){
-            String username = MyUtil.getUsernameCurrentlyLoggedInUser();
-            log.info(username);
-            return taskRepository.findByUsername(username);
+            String msisdn = MyUtil.getUsernameCurrentlyLoggedInUser();
+            log.info(msisdn);
+            return taskRepository.findByUsername(msisdn);
         }
-
         return  this.taskRepository.findAll();
     }
 

@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 2.21.588 on 2022-09-17 07:44:34.
+// Generated using typescript-generator version 2.21.588 on 2022-09-23 23:22:23.
 
 export class AuthenticationRequest {
     password: string;
@@ -22,6 +22,7 @@ export class Task implements Serializable {
     title: string;
     description: string;
     username: string;
+    firstAndLastName: string;
     status: Status;
 }
 

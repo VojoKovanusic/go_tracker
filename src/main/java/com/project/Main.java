@@ -39,7 +39,7 @@ public class Main {
 					user.setAdmin(true);
 					user.setFirstName("Snjeza");
 					user.setLastName("Kovanusic");
-					user.setUsername("065123123");
+					user.setUsername("65123123");
 					user.setPassword("s");
 					user.setEnabled(true);
 					user.getRoles().add(role);

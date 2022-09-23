@@ -13,7 +13,6 @@ import {UserService} from "../../../services/UserService";
   styleUrls: ['./add-task.component.css']
 })
 export class AddTaskComponent implements OnInit {
-
   registerForm: FormGroup
   submitted: boolean
   error = ''
@@ -21,12 +20,11 @@ export class AddTaskComponent implements OnInit {
   users: UserResponse[]
 
   constructor(private formBuilder: FormBuilder, private authService: AuthenticationService,
-              private taskService: TaskService, private router: Router, private userService: UserService, private location: Location
-  ) {
+              private taskService: TaskService, private router: Router, private userService: UserService, private location: Location) {
   }
 
   ngOnInit(): void {
-    this.getAllAll().then(u => {
+    this.getAllUsers().then(u => {
       console.log(this.users = u)
     })
     this.registerForm = this.formBuilder.group({
@@ -37,7 +35,6 @@ export class AddTaskComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("Submitt")
     this.submitted = true
     if (this.registerForm.invalid) {
       return
@@ -58,11 +55,13 @@ export class AddTaskComponent implements OnInit {
       id: number;
       title: string;
       status: Status
+      firstAndLastName: string
     }
 
     task.title = this.form.title.value
     task.username = this.form.username.value
     task.description = this.form.description.value
+    task.firstAndLastName = this.getFirstAndLastName(this.form.username.value);
     return task;
   }
 
@@ -70,9 +69,15 @@ export class AddTaskComponent implements OnInit {
     this.location.back();
   }
 
-  async getAllAll() {
+  async getAllUsers() {
     return await this.userService.getAllUserResponse().toPromise()
   }
 
+  getFirstAndLastName(username: string): string {
+    let userResponse = this.users.find(us => username == us.username);
+    if (userResponse) {
+      return userResponse.firstName + " " + userResponse.lastName;
+    } else return "";
+  }
 }
 

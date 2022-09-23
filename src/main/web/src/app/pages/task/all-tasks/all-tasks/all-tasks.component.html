@@ -37,7 +37,7 @@
       <tr *ngFor="let task of tasks; let i = index">
         <!-- <p class="text-break">{{product.title}}</p>-->
         <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex"><strong>{{task.title}}</strong></td>
-        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{task.username}}</td>
+        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{task.firstAndLastName}}</td>
         <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">
           <mat-icon *ngIf="isInPlayState(task.status)" (click)="switchInProgress(task)">play_circle_outline
           </mat-icon>

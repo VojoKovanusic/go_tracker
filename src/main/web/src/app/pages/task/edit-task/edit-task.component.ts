@@ -82,6 +82,7 @@ export class EditTaskComponent implements OnInit {
       id: number;
       title: string;
       status: Status
+      firstAndLastName:string
     }
 
     task.title = this.form.title.value
