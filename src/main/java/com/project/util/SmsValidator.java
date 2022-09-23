@@ -1,4 +1,4 @@
-package com.project.Util;
+package com.project.util;
 
 import lombok.experimental.UtilityClass;
 

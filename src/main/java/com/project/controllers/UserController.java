@@ -1,6 +1,6 @@
 package com.project.controllers;
 
-import com.project.Util.SmsValidator;
+import com.project.util.SmsValidator;
 import com.project.error_advice.MsisdnNotValidEception;
 import com.project.model.User;
 import com.project.model.response.UserResponse;
@@ -39,8 +39,7 @@ public class UserController {
 
     @GetMapping("/users/{username}")
     public User userByUsername(@PathVariable String username) {
-        System.out.println("username => " + username);
-        return userService.getUser(username);
+         return userService.getUser(username);
     }
 
     @PostMapping("/user")

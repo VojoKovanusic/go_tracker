@@ -1,4 +1,4 @@
-package com.project.Util;
+package com.project.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

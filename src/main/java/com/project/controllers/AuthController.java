@@ -1,6 +1,6 @@
 package com.project.controllers;
 
-import com.project.Util.SmsValidator;
+import com.project.util.SmsValidator;
 import com.project.constants.ErrorMsg;
 import com.project.error_advice.MsisdnNotValidEception;
 import com.project.error_advice.UserNotFoundException;

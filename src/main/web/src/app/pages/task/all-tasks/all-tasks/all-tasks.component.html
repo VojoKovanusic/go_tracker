@@ -19,41 +19,41 @@
     <table mdbTable #tableEl="mdbTable" class="z-depth-1">
       <thead class="table-info">
       <tr>
-        <th class="tableHeadInButton" [mdbTableSort]="products" sortBy="title">Naslov<br>
+        <th class="tableHeadInButton" [mdbTableSort]="tasks" sortBy="title">Naslov<br>
           <mdb-icon fas icon="sort"></mdb-icon>
         </th>
 
-        <th class="tableHeadInButton" [mdbTableSort]="products" sortBy="username">Osoba<br>
+        <th class="tableHeadInButton" [mdbTableSort]="tasks" sortBy="username">Osoba<br>
           <mdb-icon fas icon="sort"></mdb-icon>
         </th>
 
-        <th class="tableHeadInButton" [mdbTableSort]="products" sortBy="status">Status<br>
+        <th class="tableHeadInButton" [mdbTableSort]="tasks" sortBy="status">Status<br>
           <mdb-icon fas icon="sort"></mdb-icon>
         </th>
         <th>Akcije</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let product of products; let i = index">
+      <tr *ngFor="let task of tasks; let i = index">
         <!-- <p class="text-break">{{product.title}}</p>-->
-        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex"><strong>{{product.title}}</strong></td>
-        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{product.username}}</td>
+        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex"><strong>{{task.title}}</strong></td>
+        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{task.username}}</td>
         <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">
-          <mat-icon *ngIf="isInPlayState(product.status)" (click)="switchInProgress(product)">play_circle_outline
+          <mat-icon *ngIf="isInPlayState(task.status)" (click)="switchInProgress(task)">play_circle_outline
           </mat-icon>
-          <div *ngIf="isInProgress(product.status)" (click)="switchOnFinished(product)"
+          <div *ngIf="isInProgress(task.status)" (click)="switchOnFinished(task)"
                class="spinner-grow text-success inProgress"></div>
-          <mat-icon *ngIf="isFinished(product.status)" class="finishedIcon">check_circle_outline</mat-icon>
+          <mat-icon *ngIf="isFinished(task.status)" class="finishedIcon">check_circle_outline</mat-icon>
 
           <!-- sivi krug <span class="dot"></span></td>-->
         <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">
-          <mat-icon *ngIf="isAdmin()" (click)="edit(product)" class="edit tileMe"
+          <mat-icon *ngIf="isAdmin()" (click)="edit(task)" class="edit tileMe"
                     title="Edituj proizvod">edit
           </mat-icon>
-          <mat-icon *ngIf="isAdmin()" (click)="delete(product)" class="delete tileMe"
+          <mat-icon *ngIf="isAdmin()" (click)="delete(task)" class="delete tileMe"
                     title="Obrisi proizvod">delete
           </mat-icon>
-          <mat-icon (click)="details(product)" *ngIf="!loading" class="go tileMe">arrow_forward</mat-icon>
+          <mat-icon (click)="details(task)" *ngIf="!loading" class="go tileMe">arrow_forward</mat-icon>
         </td>
       </tr>
       </tbody>
@@ -61,7 +61,7 @@
 
       <tr>
         <td colspan="5">
-          <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="products"></mdb-table-pagination>
+          <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="tasks"></mdb-table-pagination>
         </td>
       </tr>
       </tfoot>

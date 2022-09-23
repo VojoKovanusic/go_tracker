@@ -1,6 +1,6 @@
 package com.project.securityService;
 
-import com.project.Util.JwtUtil;
+import com.project.util.JwtUtil;
 import com.project.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,13 +24,13 @@ public class AuthenticateService {
     }
 
     public String getToken(User authenticationRequest) throws Exception {
-        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         return jwtUtil.generateToken(userDetails);
     }
 
     private void authenticate(String username, String password) throws Exception {
-        try {
+         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (DisabledException e) {
             throw new Exception("USER_DISABLED", e);

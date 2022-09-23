@@ -45,7 +45,7 @@
             scope="row">{{i + 1}}</th>
         <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{user.firstName}}</td>
         <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{user.lastName}}</td>
-        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{user.username}}</td>
+        <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{getMsisdn(user.username)}}</td>
         <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">{{apropriateUserRole(user.role)}}</td>
         <td *ngIf="i+1 >= pagination.firstItemIndex && i < pagination.lastItemIndex">
 

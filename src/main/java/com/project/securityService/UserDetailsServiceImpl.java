@@ -18,11 +18,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        return new MyUserDetails(getRegisterUser(userName));
+         return new MyUserDetails(getRegisterUser(userName));
     }
 
     private com.project.model.User getRegisterUser(String username) {
-        try {
+         try {
             return repository.findByUsername(username);
         } catch (UsernameNotFoundException e) {
         }

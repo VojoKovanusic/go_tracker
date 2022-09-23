@@ -3,7 +3,8 @@ package com.project.service;
 import com.project.model.Status;
 import com.project.model.Task;
 import com.project.repository.TaskRepository;
-import lombok.extern.slf4j.Slf4j;
+import com.project.util.MyUtil;
+ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,13 @@ public class TaskService {
     }
 
     public List<Task> tasks() {
-        return (List<Task>) this.taskRepository.findAll();
+        if(MyUtil.isUser()){
+            String username = MyUtil.getUsernameCurrentlyLoggedInUser();
+            log.info(username);
+            return taskRepository.findByUsername(username);
+        }
+
+        return  this.taskRepository.findAll();
     }
 
     public void add(Task task) {

@@ -22,7 +22,7 @@ export class AllTasksComponent implements OnInit {
   }
 
   loading: boolean;
-  products: Task[];
+  tasks: Task[];
   previous: any = [];
   searchText: string = '';
   user: User;
@@ -34,14 +34,14 @@ export class AllTasksComponent implements OnInit {
 
   ngOnInit() {
     this.getAllAll().then(() => {
-      this.table.setDataSource(this.products);
-      this.products = this.table.getDataSource();
+      this.table.setDataSource(this.tasks);
+      this.tasks = this.table.getDataSource();
       this.previous = this.table.getDataSource();
     });
   }
 
   async getAllAll() {
-    this.products = await this.service.getAll().toPromise()
+    this.tasks = await this.service.getAll().toPromise()
   }
 
   ngAfterViewInit() {
@@ -55,10 +55,10 @@ export class AllTasksComponent implements OnInit {
     const prev = this.table.getDataSource();
     if (!this.searchText) {
       this.table.setDataSource(this.previous);
-      this.products = this.table.getDataSource();
+      this.tasks = this.table.getDataSource();
     }
     if (this.searchText) {
-      this.products = this.table.searchLocalDataBy(this.searchText);
+      this.tasks = this.table.searchLocalDataBy(this.searchText);
       this.table.setDataSource(prev);
     }
   }
@@ -78,7 +78,7 @@ export class AllTasksComponent implements OnInit {
   }
 
   async getAll() {
-    this.products = await this.service.getAll().toPromise()
+    this.tasks = await this.service.getAll().toPromise()
   }
 
   addTasks() {

@@ -98,4 +98,8 @@ export class UserPageComponent implements OnInit, AfterViewInit {
     }
 
   }
+
+  getMsisdn(msisdn: string) {
+    return '0'+msisdn
+  }
 }

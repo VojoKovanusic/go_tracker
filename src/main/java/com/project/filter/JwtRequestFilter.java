@@ -1,6 +1,6 @@
 package com.project.filter;
 
-import com.project.Util.JwtUtil;
+import com.project.util.JwtUtil;
 import com.project.securityService.UserDetailsServiceImpl;
  import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
